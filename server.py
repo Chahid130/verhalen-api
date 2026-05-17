@@ -16,7 +16,7 @@ def maak_verhaal():
     response = requests.post(
         'https://api.anthropic.com/v1/messages',
         headers={'Content-Type': 'application/json', 'anthropic-version': '2023-06-01', 'x-api-key': ANTHROPIC_API_KEY},
-        json={'model': 'claude-opus-4-5', 'max_tokens': max_tokens, 'messages': [{'role': 'user', 'content': prompt}]}
+        json={'model': 'claude-opus-4-5', 'max_tokens': max_tokens, 'messages': [{'role': 'user', 'content': prompt}]}, timeout=120
     )
     if response.status_code == 200:
         tekst = response.json()['content'][0]['text']
