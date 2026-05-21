@@ -22,7 +22,8 @@ def maak_verhaal():
         tekst = response.json()['content'][0]['text']
         return jsonify({'tekst': tekst})
     else:
-        return jsonify({'error': 'API fout'}), 500
+        print(f"API ERROR {response.status_code}: {response.text}", flush=True)
+        return jsonify({'error': 'API fout', 'status': response.status_code, 'detail': response.text}), 500
 
 @app.route('/health', methods=['GET'])
 def health():
